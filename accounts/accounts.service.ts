@@ -1,4 +1,4 @@
-import config from '../config.json';
+import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
@@ -197,7 +197,7 @@ async function hash(password: any) {
 }
 
 function generateJwtToken(account: any) {
-    return jwt.sign({ sub: account.id, id: account.id }, (config as any).secret, { expiresIn: '15m' });
+    return jwt.sign({ sub: account.id, id: account.id }, process.env.JWT_SECRET!, { expiresIn: '15m' });
 }
 
 function generateRefreshToken(account: any, ipAddress: any) {
