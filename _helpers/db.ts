@@ -23,11 +23,18 @@ async function initialize() {
 
     const connection = await mysql.createConnection({ host, port, user, password });
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
+    await connection.end();
 
     const sequelize = new Sequelize(database, user, password, {
         host,
         port,
-        dialect: 'mysql'
+        dialect: 'mysql',
+        pool: {
+            max: 2,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
     });
 
     db.Account = accountModel(sequelize);
