@@ -3,7 +3,7 @@ info:
   title: Node MySQL API
   version: 1.0.0
 servers:
-  - url: https://node-mysql-api-wczn-git-main-hashleyss-projects.vercel.app
+  - url: https://ipt-2026-backend-hashleyss.vercel.app
 paths:
   /accounts/register:
     post:
