@@ -3,7 +3,13 @@
   "builds": [
     {
       "src": "server.ts",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "_helpers/swagger.yaml",
+          "_helpers/**"
+        ]
+      }
     }
   ],
   "routes": [
