@@ -5,14 +5,15 @@
       "src": "server.ts",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": [
-          "_helpers/swagger.yaml",
-          "_helpers/**"
-        ]
+        "includeFiles": ["swagger.yaml"]
       }
     }
   ],
   "routes": [
+    {
+      "src": "/api-docs/swagger-ui(.*)",
+      "dest": "server.ts"
+    },
     {
       "src": "/(.*)",
       "dest": "server.ts"
