@@ -23,25 +23,20 @@ async function initialize() {
 
     console.log('Connecting to DB at:', host, port);
 
-    // Create DB if it doesn't exist
     const connection = await mysql.createConnection({ host, port, user, password });
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
-    // Connect to DB
     const sequelize = new Sequelize(database, user, password, {
         host,
         port,
         dialect: 'mysql'
     });
 
-    // Init models
     db.Account = accountModel(sequelize);
     db.RefreshToken = refreshTokenModel(sequelize);
 
-    // Define relationships
     db.Account.hasMany(db.RefreshToken, { onDelete: 'CASCADE' });
     db.RefreshToken.belongsTo(db.Account);
 
-    // Sync models with database
     await sequelize.sync();
 }
