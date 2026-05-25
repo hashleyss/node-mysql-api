@@ -7,6 +7,7 @@ import path from 'path';
 import errorHandler from './_middleware/error-handler';
 import accountsController from './accounts/accounts.controller';
 import swaggerDocs from './_helpers/swagger';
+import { dbReady } from './_helpers/db';
 
 const app = express();
 
@@ -14,6 +15,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
+
+// Wait for DB before handling requests
+app.use(async (req: any, res: any, next: any) => {
+    await dbReady;
+    next();
+});
 
 // Serve swagger-ui static assets
 app.use('/api-docs', express.static(path.join(__dirname, '../node_modules/swagger-ui-dist')));

@@ -6,12 +6,10 @@ import refreshTokenModel from '../accounts/refresh-token.model';
 const db: any = {};
 export default db;
 
-initialize().catch(err => {
+export const dbReady: Promise<void> = initialize().catch(err => {
     console.error('DB initialization failed:', err.message);
     console.error('DB_HOST:', process.env.DB_HOST);
     console.error('DB_PORT:', process.env.DB_PORT);
-    console.error('DB_USER:', process.env.DB_USER);
-    console.error('DB_NAME:', process.env.DB_NAME);
 });
 
 async function initialize() {
@@ -39,4 +37,5 @@ async function initialize() {
     db.RefreshToken.belongsTo(db.Account);
 
     await sequelize.sync();
+    console.log('DB initialized successfully');
 }
