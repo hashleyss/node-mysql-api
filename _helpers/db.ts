@@ -21,7 +21,7 @@ async function initialize() {
     const password = process.env.DB_PASSWORD!;
     const database = process.env.DB_NAME!;
 
-    console.log('Connecting to DB at:', host, port); // debug line
+    console.log('Connecting to DB at:', host, port);
 
     // Create DB if it doesn't exist
     const connection = await mysql.createConnection({ host, port, user, password });
