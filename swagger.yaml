@@ -3,7 +3,7 @@ info:
   title: Node MySQL API
   version: 1.0.0
 servers:
-  - url: https://ipt-2026-backend-hashleyss.vercel.app
+  - url: https://ipt-2026-backend-hashleyss.onrender.com
 paths:
   /accounts/register:
     post:

@@ -5,7 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "start": "node dist/server.js",
-    "build": "tsc",
+    "build": "tsc && cp swagger.yaml dist/swagger.yaml",
     "start:dev": "nodemon --exec ts-node ./server.ts"
   },
   "keywords": [],
