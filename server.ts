@@ -29,9 +29,8 @@ app.use('/accounts', accountsController);
 app.use('/api-docs', swaggerDocs);
 app.use(errorHandler);
 
-if (process.env.NODE_ENV !== 'production') {
-  const port = 4000;
-  app.listen(port, () => console.log('Server listening on port ' + port));
-}
+// Listen on PORT for Render, fallback to 4000 for local
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log('Server listening on port ' + port));
 
 export default app;
